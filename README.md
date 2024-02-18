@@ -28,4 +28,5 @@ When comparing or analysing jacoco results we should always keep in mind that te
 
 However, when we analyse the rest, we come to face with some big problems, such as **fromArray(int[])** and **add(int)**, which could lead to conflicts even thought they are simple things.
 
-
+### Fixing tests problems based on Jacoco
+As we mentioned previously, big problems are our biggest concern, so after a careful analysis as to how to tackle them, we end up with the following
