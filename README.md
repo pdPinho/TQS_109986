@@ -28,6 +28,4 @@ When comparing or analysing jacoco results we should always keep in mind that te
 
 However, when we analyse the rest, we come to face with some big problems, such as **fromArray(int[])** and **add(int)**, which could lead to conflicts even thought they are simple things.
 
-> ## TODO
-- ex1: find way to set stack size
-- ex2: currently needing checks on size() and intersects()
+

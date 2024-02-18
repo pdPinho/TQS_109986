@@ -64,15 +64,10 @@ public class BoundedSetOfNaturals implements Iterable<Integer> {
     }
 
 
-    // Why is this a boolean????
     public boolean intersects(BoundedSetOfNaturals subset) {
-        ArrayList<Integer> intersect = new ArrayList<>();
-
-        for (int element: subset){
+        for (int element: subset)
             if (this.collection.contains(element))
-                intersect.add(element);
-        }
-
+                return true;
         return false;
     }
 

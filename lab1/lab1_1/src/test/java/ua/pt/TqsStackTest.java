@@ -17,7 +17,7 @@ public class TqsStackTest {
 
     @BeforeEach
     void setUp(){
-        wordStack = new TqsStack<>();
+        wordStack = new TqsStack<>(3);
     }
 
 
@@ -106,8 +106,10 @@ public class TqsStackTest {
     @DisplayName("For bounded stacks only: pushing onto a full stack does throw an IllegalStateException")
     @Test
     void boundStackPushThrowsException(){
-        // This would be easy if we were using the "Stack" object, but we're using linked lists...
-
+        wordStack.push("1");
+        wordStack.push("2");
+        wordStack.push("Next one will throw an error");
+        
         assertThrows(IllegalStateException.class, () -> wordStack.push("And another one"));
     }
 }
