@@ -14,3 +14,4 @@ Allows us to run code with UnnecessaryExpectations
 
 Verify is mostly used to guarantee that a certain method has been called X amount of times - however this is not required to run the test.
 
+<scope> X </scope> will only include the dependency within our chosen scope (per example, test scope)
