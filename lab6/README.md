@@ -25,3 +25,6 @@ Technical Debt - 1h 35min
 
 In other words, we would have to spend around 1h and 35mins to fix these problems, or we can just ignore them... 
 And that's how technical debt accumulates, by having the "build now, fix later" mentality.
+
+## ex c
+In terms of code coverage, it has 87.5% coverage and only 3 lines not covered.
