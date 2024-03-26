@@ -12,6 +12,4 @@ public interface BusService {
     public List<Bus> getAllBuses();
 
     public Bus save(Bus bus);
-
-    public boolean isFull(Bus bus);
 }

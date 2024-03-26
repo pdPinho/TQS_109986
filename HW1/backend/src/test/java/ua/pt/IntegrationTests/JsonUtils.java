@@ -1,4 +1,4 @@
-package ua.pt;
+package ua.pt.IntegrationTests;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

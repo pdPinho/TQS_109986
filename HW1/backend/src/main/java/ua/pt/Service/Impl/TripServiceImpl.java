@@ -6,7 +6,7 @@ import ua.pt.Repository.TripRepository;
 import ua.pt.Service.TripService;
 
 @Service
-public class TripServiceImpl implements TripService {
+public class TripServiceImpl {
     private final TripRepository tripRepository;
 
     public TripServiceImpl(TripRepository tripRepository){

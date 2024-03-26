@@ -1,4 +1,4 @@
-package ua.pt;
+package ua.pt.IntegrationTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,9 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @WebMvcTest(BusController.class)
-public class BusController_Test {
+public class BusControllerTest {
     
     @Autowired
     private MockMvc mvc;
@@ -76,4 +77,34 @@ public class BusController_Test {
 
         verify(service, times(1)).getAllBuses();
     }
+
+    @Test
+    void givenBus_whenGetById_thenReturnBus() throws Exception {
+        Bus bus = new Bus("XPTO", 20);
+        bus.setId((long)0);
+
+        when(service.getBusById((long)0)).thenReturn(bus);
+
+        mvc.perform(
+            get("/api/buses/0")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.id", is(0)));
+
+        verify(service, times(1)).getBusById(bus.getId());
+    }
+
+    /*
+    @Test
+    void givenBus_whenGetByWrongId_thenReturnError() throws Exception {
+        when(service.getBusById((long)0)).thenThrow(new NoSuchElementException("Bus not found"));
+
+        mvc.perform(
+            get("/api/buses/0")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+
+        verify(service, times(1)).getBusById((long)0);
+    }
+    */
 }

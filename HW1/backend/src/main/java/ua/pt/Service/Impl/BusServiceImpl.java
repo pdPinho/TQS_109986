@@ -6,7 +6,7 @@ import ua.pt.Repository.BusRepository;
 import ua.pt.Service.BusService;
 
 @Service
-public class BusServiceImpl implements BusService {
+public class BusServiceImpl {
     private final BusRepository busRepository;
 
     public BusServiceImpl(BusRepository busRepository){

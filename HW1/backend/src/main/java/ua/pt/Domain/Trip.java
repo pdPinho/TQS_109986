@@ -21,21 +21,27 @@ import lombok.Setter;
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tripId;
-
-    private String origin;
-
-    private String destination;
+    private Long id;
 
     private Date date;
 
     private double price;
 
+    private int occupancy;
+
+    @ManyToOne
+    @JoinColumn(name = "origin_id")
+    private City origin;
+
+    @ManyToOne
+    @JoinColumn(name = "destination_id")
+    private City destination;
+
     @ManyToOne
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
-    public Trip(String origin, String destination, Date date, double price, Bus bus){
+    public Trip(City origin, City destination, Date date, double price, Bus bus){
         this.origin = origin;
         this.destination = destination;
         this.date = date;

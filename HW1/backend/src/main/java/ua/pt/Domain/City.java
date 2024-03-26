@@ -13,18 +13,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name ="bus")
-public class Bus {
+@Table(name ="city")
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    private int capacity;
-
-    public Bus(String name, int capacity){
+    public City(String name){
         this.name = name;
-        this.capacity = capacity;
     }
 }
