@@ -94,17 +94,13 @@ public class BusControllerTest {
         verify(service, times(1)).getBusById(bus.getId());
     }
 
-    /*
     @Test
-    void givenBus_whenGetByWrongId_thenReturnError() throws Exception {
-        when(service.getBusById((long)0)).thenThrow(new NoSuchElementException("Bus not found"));
-
+    void whenGetByInvalidId_thenReturnError() throws Exception {
         mvc.perform(
-            get("/api/buses/0")
+            get("/api/buses/999")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
-        verify(service, times(1)).getBusById((long)0);
+        verify(service, times(1)).getBusById((long)999);
     }
-    */
 }

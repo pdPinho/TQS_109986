@@ -32,8 +32,12 @@ public class BusController {
 
     @GetMapping("/buses/{id}")
     public ResponseEntity<Bus> getBusById(@PathVariable long id){
-        HttpStatus status = HttpStatus.OK;
         Bus bus = busService.getBusById(id);
+        HttpStatus status;
+        if (bus != null)
+            status = HttpStatus.OK;
+        else
+            status = HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(bus, status);
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CityController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bus-app</a> &gt; <a href="index.source.html" class="el_package">ua.pt.Controllers</a> &gt; <span class="el_source">CityController.java</span></div><h1>CityController.java</h1><pre class="source lang-java linenums">package ua.pt.Controllers;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import ua.pt.Domain.City;
+import ua.pt.Service.CityService;
+
+@RestController
+@RequestMapping(&quot;/api&quot;)
+public class CityController {
+    private final CityService cityService;
+
+<span class="fc" id="L17">    public CityController(CityService cityService){</span>
+<span class="fc" id="L18">        this.cityService = cityService;</span>
+<span class="fc" id="L19">    }</span>
+
+    @PostMapping(&quot;/cities&quot;)
+    public ResponseEntity&lt;City&gt; createCity(@RequestBody City city){
+<span class="fc" id="L23">        HttpStatus status = HttpStatus.CREATED;</span>
+<span class="fc" id="L24">        City saved = cityService.save(city);</span>
+<span class="fc" id="L25">        return new ResponseEntity&lt;&gt;(saved, status);</span>
+    }
+
+    @GetMapping(&quot;/cities&quot;)
+    public List&lt;City&gt; getAllCities() {
+<span class="fc" id="L30">        return cityService.getAllCities();</span>
+    }
+
+    @GetMapping(&quot;/cities/{id}&quot;)
+    public ResponseEntity&lt;City&gt; getCityById(@PathVariable long id){
+<span class="fc" id="L35">        City city = cityService.getCityById(id);</span>
+        HttpStatus status;
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (city != null)</span>
+<span class="fc" id="L38">            status = HttpStatus.OK;</span>
+        else
+<span class="fc" id="L40">            status = HttpStatus.NOT_FOUND;</span>
+<span class="fc" id="L41">        return new ResponseEntity&lt;&gt;(city, status);</span>
+    }
+
+    @GetMapping(&quot;/cities/name/{name}&quot;)
+    public ResponseEntity&lt;City&gt; getCityByName(@PathVariable String name){
+<span class="fc" id="L46">        City city = cityService.getCityByName(name);</span>
+        HttpStatus status;
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (city != null)</span>
+<span class="fc" id="L49">            status = HttpStatus.OK;</span>
+        else
+<span class="fc" id="L51">            status = HttpStatus.NOT_FOUND;</span>
+<span class="fc" id="L52">        return new ResponseEntity&lt;&gt;(city, status);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,1 +1,4 @@
-ua/pt/JsonUtils.class
+ua/pt/IntegrationTests/JsonUtils.class
+ua/pt/IntegrationTests/UserControllerTest.class
+ua/pt/IntegrationTests/BusControllerTest.class
+ua/pt/IntegrationTests/CityControllerTest.class
