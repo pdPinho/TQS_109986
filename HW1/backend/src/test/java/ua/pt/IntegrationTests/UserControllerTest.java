@@ -122,7 +122,7 @@ public class UserControllerTest {
             get("/api/users/0/reservations")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(1)))
-            .andExpect(jsonPath("$[0].classe", is(true)));
+            .andExpect(jsonPath("$[0].classe_type", is(true)));
 
         verify(service, times(1)).getAllReservations((long)0);
     }

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ua.pt.IntegrationTests.ReservationControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.974 s - in ua.pt.IntegrationTests.ReservationControllerTest

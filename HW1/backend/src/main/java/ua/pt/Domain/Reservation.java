@@ -25,15 +25,15 @@ public class Reservation {
 
     private int seat;
 
-    private boolean classe;
+    private boolean classe_type;
 
     @OneToOne
     @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
-    public Reservation(int seat, boolean classe, Trip trip){
+    public Reservation(int seat, boolean classe_type, Trip trip){
         this.seat = seat;
-        this.classe = classe;
+        this.classe_type = classe_type;
         this.trip = trip;
     }
 }
