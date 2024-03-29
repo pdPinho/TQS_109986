@@ -11,13 +11,15 @@ import ua.pt.Domain.Trip;
 import ua.pt.Service.ReservationService;
 import ua.pt.Service.TripService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class ReservationController {
     private final ReservationService reservationService;
     private final TripService tripService;
 
-    public ReservationController(ReservationService reservationService, TripService tripService){
+    public ReservationController(ReservationService reservationService, 
+                                TripService tripService){
         this.reservationService = reservationService;
         this.tripService = tripService;
     }
@@ -26,6 +28,13 @@ public class ReservationController {
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation){
         HttpStatus status = HttpStatus.CREATED;
         Reservation saved = reservationService.save(reservation);
+        return new ResponseEntity<>(saved, status);
+    }
+
+    @PostMapping("/reservations/{id}/pay")
+    public ResponseEntity<Reservation> updateReservationStatus(@PathVariable Long id){
+        HttpStatus status = HttpStatus.OK;
+        Reservation saved = reservationService.updateReservationStatus(id);
         return new ResponseEntity<>(saved, status);
     }
     
@@ -50,4 +59,5 @@ public class ReservationController {
         Trip trip = tripService.getTripById(id);
         return reservationService.getReservationsByTrip(trip);
     }
+
 }

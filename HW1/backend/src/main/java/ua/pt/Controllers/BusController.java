@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.pt.Domain.Bus;
 import ua.pt.Service.BusService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class BusController {

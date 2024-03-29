@@ -13,6 +13,4 @@ public interface UserService {
     public List<User> getAllUsers();
 
     public void addReservation(Reservation reservation, User user);
-
-    public List<Reservation> getAllReservations(Long id);
 }

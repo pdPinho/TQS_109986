@@ -1,23 +1,18 @@
 package ua.pt.Service;
 
-import java.util.Date;
 import java.util.List;
 
-import ua.pt.Domain.Bus;
-import ua.pt.Domain.City;
-import ua.pt.Domain.Trip;
 import ua.pt.Domain.Reservation;
+import ua.pt.Domain.Trip;
 
 public interface TripService {
-    public Trip save(City origin, City destination, Date date, double price, Bus bus);
+    public Trip save(Trip trip);
 
     public Trip getTripById(Long id);
 
-    public List<Trip> getTripsOnDate(Date date, City origin, City destination);
+    public List<Trip> getAllTrips();
 
-    public List<Reservation> getReservations();
+    public List<Trip> getTripsByDateAndOriginAndDestination(String date, Long origin, Long destination);
 
-    public int getOccupancy(Long id);
-
-    public double getPrice();
+    public void addReservation(Reservation reservation, Trip trip);
 }

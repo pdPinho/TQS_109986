@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name ="bus")
 public class Bus {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

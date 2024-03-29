@@ -13,4 +13,6 @@ public interface ReservationService {
     public List<Reservation> getReservationsByTrip(Trip trip);
 
     public List<Reservation> getAllReservations();
+
+    public Reservation updateReservationStatus(Long id);
 }

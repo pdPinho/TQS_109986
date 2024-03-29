@@ -1,1 +1,5 @@
 export {default as Root} from './Root'
+export {default as Trips} from './Trips'
+export {default as Home} from './Home'
+export {default as Details} from './Details'
+export {default as Confirm} from './Confirm'

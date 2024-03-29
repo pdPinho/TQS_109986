@@ -1,6 +1,8 @@
 package ua.pt.Domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +23,7 @@ import lombok.Setter;
 @Table(name ="trip")
 public class Trip {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date date;
@@ -41,11 +44,16 @@ public class Trip {
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
+    @OneToMany
+    private List<Reservation> reservations;
+
     public Trip(City origin, City destination, Date date, double price, Bus bus){
         this.origin = origin;
         this.destination = destination;
         this.date = date;
         this.price = price;
         this.bus = bus;
+
+        this.reservations = new ArrayList<>();
     }
 }

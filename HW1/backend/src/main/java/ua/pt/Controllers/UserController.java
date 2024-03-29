@@ -10,6 +10,7 @@ import ua.pt.Domain.Reservation;
 import ua.pt.Domain.User;
 import ua.pt.Service.UserService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -40,11 +41,6 @@ public class UserController {
         else
             status = HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(user, status);
-    }
-
-    @GetMapping("/users/{id}/reservations")
-    public List<Reservation> getAllUserReservations(@PathVariable long id){
-        return userService.getAllReservations(id);
     }
 
     @PostMapping("/users/{id}/reservations")

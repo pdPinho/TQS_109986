@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql/mysql-server:5.7
+    container_name: DOCKER-TQS-HW1
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: trips
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "33060:3306"
