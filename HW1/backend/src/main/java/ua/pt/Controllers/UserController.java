@@ -42,12 +42,4 @@ public class UserController {
             status = HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(user, status);
     }
-
-    @PostMapping("/users/{id}/reservations")
-    public ResponseEntity<User> addReservation(@PathVariable long id, @RequestBody Reservation reservation){
-        HttpStatus status = HttpStatus.CREATED;
-        User user = userService.getUserById(id);
-        userService.addReservation(reservation, user);
-        return new ResponseEntity<>(user, status);
-    }
 }

@@ -22,7 +22,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import ua.pt.Domain.Bus;
 import ua.pt.Domain.City;
-import ua.pt.Domain.Reservation;
 import ua.pt.Domain.Trip;
 import ua.pt.Repository.CityRepository;
 import ua.pt.Repository.TripRepository;
@@ -99,15 +98,5 @@ public class TripServiceTest {
         assertThat(allTrips).hasSize(2);
 
         verify(tripRepository, times(1)).findTripsByDateAndOriginAndDestination(date, lisboa, porto);
-    }
-
-    @Test
-    void whenAddReservation_thenAddReservation() {
-        Trip trip = tripRepository.findById(111L).get();
-        tripServiceImpl.addReservation(new Reservation(), trip);
-
-        assertThat(trip.getReservations()).hasSize(1);
-
-        verify(tripRepository, times(1)).save(Mockito.any());
     }
 }

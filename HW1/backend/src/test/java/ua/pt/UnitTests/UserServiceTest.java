@@ -18,7 +18,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ua.pt.Domain.Reservation;
 import ua.pt.Domain.User;
 import ua.pt.Repository.UserRepository;
 import ua.pt.Service.Impl.UserServiceImpl;
@@ -72,13 +71,4 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findAll();
     }
 
-    @Test
-    void whenAddReservation_thenAddReservation() {
-        User user = userRepository.findById(111L).get();
-        userServiceImpl.addReservation(new Reservation(), user);
-
-        assertThat(user.getReservations()).hasSize(1);
-
-        verify(userRepository, times(1)).save(Mockito.any());
-    }
 }

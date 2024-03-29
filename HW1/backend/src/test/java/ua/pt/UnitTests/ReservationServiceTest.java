@@ -41,6 +41,7 @@ public class ReservationServiceTest {
     @BeforeEach
     void setUp(){
         User user = new User("Pedro", "123123123");
+        user.setId(111L);
         City city1 = new City("Porto");
         City city2 = new City("Lisboa");
         Trip trip = new Trip(city1, city2, new Date(), 2.5, new Bus());

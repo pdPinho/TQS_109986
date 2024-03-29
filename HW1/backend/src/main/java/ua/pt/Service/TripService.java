@@ -13,6 +13,4 @@ public interface TripService {
     public List<Trip> getAllTrips();
 
     public List<Trip> getTripsByDateAndOriginAndDestination(String date, Long origin, Long destination);
-
-    public void addReservation(Reservation reservation, Trip trip);
 }

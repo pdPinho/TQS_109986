@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import ua.pt.Domain.Reservation;
 import ua.pt.Domain.User;
 import ua.pt.Repository.UserRepository;
 import ua.pt.Service.UserService;
@@ -15,12 +14,6 @@ public class UserServiceImpl implements UserService{
 
     public UserServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public void addReservation(Reservation reservation, User user) {
-        user.getReservations().add(reservation);
-        userRepository.save(user);
     }
 
     @Override

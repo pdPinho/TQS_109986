@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,16 +45,11 @@ public class Trip {
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
-    @OneToMany
-    private List<Reservation> reservations;
-
     public Trip(City origin, City destination, Date date, double price, Bus bus){
         this.origin = origin;
         this.destination = destination;
         this.date = date;
         this.price = price;
         this.bus = bus;
-
-        this.reservations = new ArrayList<>();
     }
 }

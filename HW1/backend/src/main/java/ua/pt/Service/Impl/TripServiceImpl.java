@@ -54,20 +54,4 @@ public class TripServiceImpl implements TripService{
             return null;
         }
     }
-
-    @Override
-    public void addReservation(Reservation reservation, Trip trip){
-        trip.getReservations().add(reservation);
-        tripRepository.save(trip);
-    }
-
-    /*
-    @Override
-    public boolean isFull(Long id){
-        Trip trip = tripRepository.findById(id).orElse(null);
-        if (trip.getOccupancy() == trip.getBus().getCapacity())
-            return true;
-        return false;
-    }
-    */
 }

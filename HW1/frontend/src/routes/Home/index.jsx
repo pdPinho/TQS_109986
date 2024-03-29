@@ -20,7 +20,6 @@ function Home() {
       })
     }, []);
 
-    console.log(origin);
     return (
         <div>
             <div className="text-2xl font-semibold w-full text-center mt-[10%]">TQS BUS WEBPAGE</div>

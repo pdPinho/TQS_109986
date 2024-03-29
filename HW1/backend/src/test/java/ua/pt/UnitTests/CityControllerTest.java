@@ -1,4 +1,4 @@
-package ua.pt.IntegrationTests;
+package ua.pt.UnitTests;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;

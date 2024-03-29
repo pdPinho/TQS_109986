@@ -1,4 +1,4 @@
-package ua.pt.IntegrationTests;
+package ua.pt.UnitTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
