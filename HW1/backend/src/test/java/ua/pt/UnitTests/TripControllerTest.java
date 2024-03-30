@@ -137,16 +137,16 @@ public class TripControllerTest {
         
         List<Trip> allTripsOnDayOne = Arrays.asList(trip1, trip2);
 
-        when(tripService.getTripsByDateAndOriginAndDestination("2024-04-01", city1.getId(), city2.getId())).thenReturn(allTripsOnDayOne);
+        when(tripService.getTripsByDateAndOriginAndDestination("2024-04-01", city1.getId(), city2.getId(), true)).thenReturn(allTripsOnDayOne);
 
         mvc.perform(
-            get("/api/trips/chosen?date=2024-04-01&origin=0&destination=1")
+            get("/api/trips/chosen?date=2024-04-01&origin=0&destination=1&all=true")
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(2)))
             .andExpect(jsonPath("$[0].price", is(2.5)))
             .andExpect(jsonPath("$[1].price", is(3.5)));
 
-        verify(tripService, times(1)).getTripsByDateAndOriginAndDestination("2024-04-01", (long)0, (long)1);
+        verify(tripService, times(1)).getTripsByDateAndOriginAndDestination("2024-04-01", (long)0, (long)1, true);
 
 
     }

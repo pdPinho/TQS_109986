@@ -2,7 +2,6 @@ package ua.pt.Service;
 
 import java.util.List;
 
-import ua.pt.Domain.Reservation;
 import ua.pt.Domain.Trip;
 
 public interface TripService {
@@ -12,5 +11,5 @@ public interface TripService {
 
     public List<Trip> getAllTrips();
 
-    public List<Trip> getTripsByDateAndOriginAndDestination(String date, Long origin, Long destination);
+    public List<Trip> getTripsByDateAndOriginAndDestination(String date, Long origin, Long destination, boolean all);
 }

@@ -32,6 +32,7 @@ import ua.pt.Domain.Trip;
 import ua.pt.Domain.User;
 import ua.pt.Service.ReservationService;
 import ua.pt.Service.TripService;
+import ua.pt.Service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,9 @@ public class ReservationControllerTest {
 
     @MockBean
     private TripService tripService;
+
+    @MockBean
+    private UserService userService;
 
     @BeforeEach
     public void setUp() throws Exception {}
@@ -155,6 +159,29 @@ public class ReservationControllerTest {
 
         verify(tripService, times(1)).getTripById(trip.getId());
         verify(reservationService, times(1)).getReservationsByTrip(trip);
+    }
+
+
+    @Test
+    void whenGetReservationsByUser_thenReturnJsonArray() throws Exception {
+        User user = new User();
+        user.setId((long)1);
+
+        Reservation reservation1 = new Reservation("paid", "EUR",new Trip(), user);
+        Reservation reservation2 = new Reservation("paid", "EUR",new Trip(), user);
+
+        List<Reservation> reservations = Arrays.asList(reservation1, reservation2);
+
+        when(userService.getUserById((long)1)).thenReturn(user);
+        when(reservationService.getReservationsByUser(user)).thenReturn(reservations);
+
+        mvc.perform(
+            get("/api/reservations/user/1")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$", hasSize(2)));
+
+        verify(userService, times(1)).getUserById(user.getId());
+        verify(reservationService, times(1)).getReservationsByUser(user);
     }
 
     @Test

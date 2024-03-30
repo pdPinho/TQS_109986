@@ -47,8 +47,9 @@ public class TripController {
     public List<Trip> findTripsByDateOriginDestination(
                                     @RequestParam("date") String date,
                                     @RequestParam("origin") Long origin,
-                                    @RequestParam("destination") Long destination){
+                                    @RequestParam("destination") Long destination,
+                                    @RequestParam("all") boolean all){
 
-            return tripService.getTripsByDateAndOriginAndDestination(date, origin, destination);
+            return tripService.getTripsByDateAndOriginAndDestination(date, origin, destination, all);
     }
 }

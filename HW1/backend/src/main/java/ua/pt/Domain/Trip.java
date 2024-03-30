@@ -51,5 +51,6 @@ public class Trip {
         this.date = date;
         this.price = price;
         this.bus = bus;
+        this.occupancy = 0;
     }
 }

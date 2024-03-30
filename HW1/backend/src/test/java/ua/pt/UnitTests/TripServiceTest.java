@@ -93,7 +93,7 @@ public class TripServiceTest {
 
     @Test
     void givenManyTripsOnDateAndOriginAndDestination_whenGetAll_thenOnlyTripsOnDateAndOriginAndDestination() {
-        List<Trip> allTrips = tripServiceImpl.getTripsByDateAndOriginAndDestination("2024-04-01", lisboa.getId(), porto.getId());
+        List<Trip> allTrips = tripServiceImpl.getTripsByDateAndOriginAndDestination("2024-04-01", lisboa.getId(), porto.getId(), true);
 
         assertThat(allTrips).hasSize(2);
 

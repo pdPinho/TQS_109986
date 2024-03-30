@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import ua.pt.Domain.Reservation;
 import ua.pt.Domain.Trip;
+import ua.pt.Domain.User;
 import ua.pt.Repository.ReservationRepository;
 import ua.pt.Service.ReservationService;
 
@@ -25,6 +26,11 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public List<Reservation> getReservationsByTrip(Trip trip) {
         return reservationRepository.findAllByTrip(trip);
+    }
+
+    @Override
+    public List<Reservation> getReservationsByUser(User user){
+        return reservationRepository.findAllByUser(user);
     }
 
     @Override

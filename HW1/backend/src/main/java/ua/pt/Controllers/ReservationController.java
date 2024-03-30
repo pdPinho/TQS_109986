@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import ua.pt.Domain.Reservation;
 import ua.pt.Domain.Trip;
+import ua.pt.Domain.User;
 import ua.pt.Service.ReservationService;
 import ua.pt.Service.TripService;
+import ua.pt.Service.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -17,11 +19,14 @@ import ua.pt.Service.TripService;
 public class ReservationController {
     private final ReservationService reservationService;
     private final TripService tripService;
+    private final UserService userService;
 
     public ReservationController(ReservationService reservationService, 
-                                TripService tripService){
+                                TripService tripService,
+                                UserService userService){
         this.reservationService = reservationService;
         this.tripService = tripService;
+        this.userService = userService;
     }
 
     @PostMapping("/reservations")
@@ -58,6 +63,12 @@ public class ReservationController {
     public List<Reservation> getAllReservationsByTrip(@PathVariable long id){
         Trip trip = tripService.getTripById(id);
         return reservationService.getReservationsByTrip(trip);
+    }
+
+    @GetMapping("/reservations/user/{id}")
+    public List<Reservation> getAllReservationsByUser(@PathVariable long id){
+        User user = userService.getUserById(id);
+        return reservationService.getReservationsByUser(user);
     }
 
 }

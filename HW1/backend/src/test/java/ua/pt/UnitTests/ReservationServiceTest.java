@@ -25,6 +25,7 @@ import ua.pt.Domain.Trip;
 import ua.pt.Domain.User;
 import ua.pt.Repository.ReservationRepository;
 import ua.pt.Repository.TripRepository;
+import ua.pt.Repository.UserRepository;
 import ua.pt.Service.Impl.ReservationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,6 +35,9 @@ public class ReservationServiceTest {
 
     @Mock(lenient = true)
     private TripRepository tripRepository;
+
+    @Mock(lenient = true)
+    private UserRepository userRepository;
 
     @InjectMocks
     private ReservationServiceImpl reservationServiceImpl;
@@ -54,12 +58,17 @@ public class ReservationServiceTest {
         List<Reservation> allReservations = Arrays.asList(reservation1, reservation2);
 
         List<Reservation> allReservationsByTrip = Arrays.asList(reservation1);
+        List<Reservation> allReservationsByUser = Arrays.asList(reservation1);
 
         Mockito.when(reservationRepository.findById(reservation1.getId())).thenReturn(Optional.of(reservation1));
         Mockito.when(reservationRepository.findById(-99L)).thenReturn(Optional.empty());
         Mockito.when(reservationRepository.findAll()).thenReturn(allReservations);
-        Mockito.when(tripRepository.findById(111L)).thenReturn(Optional.of(trip));
         Mockito.when(reservationRepository.findAllByTrip(trip)).thenReturn(allReservationsByTrip);
+        Mockito.when(reservationRepository.findAllByUser(user)).thenReturn(allReservationsByUser);
+
+        Mockito.when(tripRepository.findById(111L)).thenReturn(Optional.of(trip));
+
+        Mockito.when(userRepository.findById(111L)).thenReturn(Optional.of(user));
     }
 
     @Test
@@ -99,6 +108,17 @@ public class ReservationServiceTest {
         assertThat(allReservationsByTrip).hasSize(1);
 
         verify(reservationRepository, times(1)).findAllByTrip(trip);
+    }
+
+    @Test
+    void givenManyReservations_whenGetByUser_thenReturnReservationsOnUser(){
+        User user = userRepository.findById(111L).get();
+
+        List<Reservation> allReservationsByUser = reservationServiceImpl.getReservationsByUser(user);
+
+        assertThat(allReservationsByUser).hasSize(1);
+
+        verify(reservationRepository, times(1)).findAllByUser(user);
     }
 
     @Test
