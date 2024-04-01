@@ -6,6 +6,9 @@ function Root() {
         <Link>
           <button className="ml-2">(click me to return home)</button>
         </Link>
+        <Link to={{ pathname: "/reservations"}}>
+          <button className="ml-2">(click me to check my reservations)</button>
+        </Link>
         <Outlet/>
       </div>
     );

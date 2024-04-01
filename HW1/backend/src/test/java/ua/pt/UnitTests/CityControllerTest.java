@@ -13,7 +13,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +21,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import ua.pt.Controllers.CityController;
-import ua.pt.Domain.City;
-import ua.pt.Service.CityService;
+import ua.pt.controllers.CityController;
+import ua.pt.domain.City;
+import ua.pt.service.CityService;
 
 @WebMvcTest(CityController.class)
-public class CityControllerTest {
+class CityControllerTest {
     
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private CityService service;
-
-    @BeforeEach
-    public void setUp() throws Exception {}
 
     @Test
     void whenPostCity_thenCreateCity() throws Exception {

@@ -7,6 +7,14 @@ const reservationService = {
 
     async getReservationById(id){
         return await client.get(`/reservations/${id}`, id)
+    },
+
+    async confirmReservation(id){
+        return await client.post(`/reservations/${id}/pay`, id)
+    },
+
+    async getReservationsByUser(){
+        return await client.get(`/reservations/user/1`)
     }
 }
 

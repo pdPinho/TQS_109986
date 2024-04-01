@@ -2,7 +2,6 @@ package ua.pt.UnitTests;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +17,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ua.pt.Domain.User;
-import ua.pt.Repository.UserRepository;
-import ua.pt.Service.Impl.UserServiceImpl;
+import ua.pt.domain.User;
+import ua.pt.repository.UserRepository;
+import ua.pt.service.impl.UserServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
     @Mock(lenient = true)
     private UserRepository userRepository;
 
@@ -42,6 +41,14 @@ public class UserServiceTest {
         Mockito.when(userRepository.findById(user1.getId())).thenReturn(Optional.of(user1));
         Mockito.when(userRepository.findById(-99L)).thenReturn(Optional.empty());
         Mockito.when(userRepository.findAll()).thenReturn(allUsers);
+    }
+
+    @Test
+    void whenSaveUser_thenSaveUser() {
+        User user = new User("Pedro", "123123123");
+        userServiceImpl.save(user);
+
+        verify(userRepository, times(1)).save(user);
     }
 
     @Test

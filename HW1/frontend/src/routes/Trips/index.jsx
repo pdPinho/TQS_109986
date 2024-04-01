@@ -36,7 +36,7 @@ function Trips(){
                         </thead>
                         <tbody className="text-center">
                             {dataload && trips.map((trip, index) => (
-                                <tr key={index} className="border-t">
+                                <tr key={trip.id} className="border-t">
                                     <td className="border px-4 py-2">
                                         <button className="rounded-md bg-gray-300 p-2"
                                                 onClick={() => {navigate('/details', {state: trip.id})}}>

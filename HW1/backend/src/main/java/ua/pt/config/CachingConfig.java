@@ -17,7 +17,7 @@ public class CachingConfig {
     @Bean
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("currencies");
-        cacheManager.setCaffeine(Caffeine.newBuilder().expireAfterWrite(5, TimeUnit.SECONDS));
+        cacheManager.setCaffeine(Caffeine.newBuilder().expireAfterWrite(3, TimeUnit.MINUTES));
         return cacheManager;
     }
 }

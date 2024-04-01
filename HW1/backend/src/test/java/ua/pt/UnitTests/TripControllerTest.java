@@ -1,7 +1,5 @@
 package ua.pt.UnitTests;
 
-
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.times;
@@ -16,7 +14,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +22,20 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import ua.pt.Controllers.TripController;
-import ua.pt.Domain.Bus;
-import ua.pt.Domain.City;
-import ua.pt.Domain.Trip;
-import ua.pt.Service.TripService;
+import ua.pt.controllers.TripController;
+import ua.pt.domain.Bus;
+import ua.pt.domain.City;
+import ua.pt.domain.Trip;
+import ua.pt.service.TripService;
 
 
 @WebMvcTest(TripController.class)
-public class TripControllerTest {
+class TripControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private TripService tripService;
-
-    @BeforeEach
-    public void setUp() throws Exception {}
 
     @Test
     void whenPostTrip_thenCreateTrip() throws Exception {

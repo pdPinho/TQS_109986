@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +23,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import ua.pt.Controllers.ReservationController;
-import ua.pt.Domain.Bus;
-import ua.pt.Domain.City;
-import ua.pt.Domain.Reservation;
-import ua.pt.Domain.Trip;
-import ua.pt.Domain.User;
-import ua.pt.Service.ReservationService;
-import ua.pt.Service.TripService;
-import ua.pt.Service.UserService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ua.pt.controllers.ReservationController;
+import ua.pt.domain.Bus;
+import ua.pt.domain.City;
+import ua.pt.domain.Reservation;
+import ua.pt.domain.Trip;
+import ua.pt.domain.User;
+import ua.pt.service.ReservationService;
+import ua.pt.service.TripService;
+import ua.pt.service.UserService;
 
 @WebMvcTest(ReservationController.class)
-public class ReservationControllerTest {
+class ReservationControllerTest {
     
     @Autowired
     private MockMvc mvc;
@@ -52,17 +48,12 @@ public class ReservationControllerTest {
     @MockBean
     private UserService userService;
 
-    @BeforeEach
-    public void setUp() throws Exception {}
-
-    private final Logger logger = LoggerFactory.getLogger(ReservationController.class);
-
     @Test
     void whenPostReservation_thenCreateReservation() throws Exception {
         Trip trip = new Trip(new City("Porto"), new City("Aveiro"), new Date(), 2.5, new Bus("XPTO", 20));
         User user = new User("Pedro", "123123123");
 
-        Reservation reservation = new Reservation("awaiting-payment", "EUR", trip, user);
+        Reservation reservation = new Reservation("awaiting-payment", "EUR", trip, user, 5.2);
 
         when(reservationService.save(Mockito.any())).thenReturn(reservation);
 
@@ -85,7 +76,7 @@ public class ReservationControllerTest {
             new City("Aveiro"),
             new Date(), 
             2.5, 
-            new Bus("XPTO", 20)), new User());
+            new Bus("XPTO", 20)), new User(), 5.2);
         reservation.setId((long)0);
 
         reservation.setStatus("paid");
@@ -108,17 +99,17 @@ public class ReservationControllerTest {
         new City("Aveiro"),
         new Date(), 
         2.5, 
-        new Bus("XPTO", 20)), new User());
+        new Bus("XPTO", 20)), new User(), 5.2);
         Reservation reservation2 = new Reservation("paid", "EUR",new Trip(new City("Porto"), 
         new City("Aveiro"),
         new Date(), 
         3.5, 
-        new Bus("XPTO", 20)), new User());
+        new Bus("XPTO", 20)), new User(), 5.2);
         Reservation reservation3 = new Reservation("awaiting-payment", "EUR",new Trip(new City("Porto"), 
         new City("Aveiro"),
         new Date(), 
         4.5, 
-        new Bus("XPTO", 20)), new User());
+        new Bus("XPTO", 20)), new User(), 5.2);
         
         List<Reservation> allReservations = Arrays.asList(reservation1, reservation2, reservation3);
 
@@ -144,8 +135,8 @@ public class ReservationControllerTest {
         Trip trip = new Trip();
         trip.setId((long)1);
 
-        Reservation reservation1 = new Reservation("paid", "EUR",trip, new User());
-        Reservation reservation2 = new Reservation("paid", "EUR",trip, new User());
+        Reservation reservation1 = new Reservation("paid", "EUR",trip, new User(), 5.2);
+        Reservation reservation2 = new Reservation("paid", "EUR",trip, new User(), 5.2);
 
         List<Reservation> reservations = Arrays.asList(reservation1, reservation2);
 
@@ -167,8 +158,8 @@ public class ReservationControllerTest {
         User user = new User();
         user.setId((long)1);
 
-        Reservation reservation1 = new Reservation("paid", "EUR",new Trip(), user);
-        Reservation reservation2 = new Reservation("paid", "EUR",new Trip(), user);
+        Reservation reservation1 = new Reservation("paid", "EUR",new Trip(), user, 5.2);
+        Reservation reservation2 = new Reservation("paid", "EUR",new Trip(), user, 5.2);
 
         List<Reservation> reservations = Arrays.asList(reservation1, reservation2);
 
@@ -209,23 +200,4 @@ public class ReservationControllerTest {
 
         verify(reservationService, times(1)).getReservationById((long)999);
     }
-
-    /*
-    @Test
-    void whenChangingCurrency_thenReturnReservationWithNewCurrency() throws Exception{
-        Reservation reservation = new Reservation();
-        reservation.setCurrency("EUR");
-        reservation.setId(10L);
-        
-        when(reservationService.getReservationById(10L)).thenReturn(reservation);
-
-        mvc.perform(
-            get("/api/reservations/10")
-            .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.currency", is("EUR")));
-
-        verify(reservationService, times(1)).getReservationById(reservation.getId());
-    }
-    */
 }

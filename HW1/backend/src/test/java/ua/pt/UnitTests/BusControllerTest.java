@@ -1,6 +1,5 @@
 package ua.pt.UnitTests;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
 
-import ua.pt.Controllers.BusController;
-import ua.pt.Domain.Bus;
-import ua.pt.Service.BusService;
+import ua.pt.controllers.BusController;
+import ua.pt.domain.Bus;
+import ua.pt.service.BusService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
@@ -23,19 +22,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @WebMvcTest(BusController.class)
-public class BusControllerTest {
+class BusControllerTest {
     
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private BusService service;
-
-    @BeforeEach
-    public void setUp() throws Exception {}
 
     @Test
     void whenPostBus_thenCreateBus() throws Exception {

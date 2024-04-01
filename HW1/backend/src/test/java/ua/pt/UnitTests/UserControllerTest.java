@@ -13,7 +13,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +21,19 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import ua.pt.Controllers.UserController;
-import ua.pt.Service.UserService;
-import ua.pt.Domain.User;
+import ua.pt.controllers.UserController;
+import ua.pt.domain.User;
+import ua.pt.service.UserService;
 
 
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
     
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private UserService service;
-
-    @BeforeEach
-    public void setUp() throws Exception {}
 
     @Test
     void whenPostUser_thenCreateUser() throws Exception {

@@ -2,7 +2,6 @@ package ua.pt.UnitTests;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +17,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ua.pt.Domain.City;
-import ua.pt.Repository.CityRepository;
-import ua.pt.Service.Impl.CityServiceImpl;
+import ua.pt.domain.City;
+import ua.pt.repository.CityRepository;
+import ua.pt.service.impl.CityServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class CityServiceTest {
+class CityServiceTest {
     @Mock(lenient = true)
     private CityRepository cityRepository;
 

@@ -3,17 +3,18 @@ package ua.pt.UnitTests;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import ua.pt.Domain.Bus;
-import ua.pt.Repository.BusRepository;
+import ua.pt.domain.Bus;
+import ua.pt.repository.BusRepository;
 
 @DataJpaTest
-public class BusRepositoryTest {
+class BusRepositoryTest {
     
     @Autowired
     private TestEntityManager entityManager;
@@ -23,19 +24,18 @@ public class BusRepositoryTest {
 
     @Test
     void whenFindBusById_thenReturnBus() {
-        Bus bus = new Bus("XPTO", 10);
-        bus.setId(10L);
+        Bus bus = new Bus("XPTOO", 10);
 
         entityManager.persistAndFlush(bus);
 
-        Bus found = busRepository.findById(10L).get();
+        Bus found = busRepository.findById(bus.getId()).get();
         assertThat(found).isEqualTo(bus);
     }
 
     @Test
     void whenFindBusByInvalidId_thenReturnNoExists() {
-        Bus found = busRepository.findById(1L).get();
-        assertThat(found).isNull();
+        Optional<Bus> found = busRepository.findById(1L);
+        assertThat(found).isEmpty();
     }
 
     @Test

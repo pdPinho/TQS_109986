@@ -17,12 +17,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ua.pt.Domain.Bus;
-import ua.pt.Repository.BusRepository;
-import ua.pt.Service.Impl.BusServiceImpl;
+import ua.pt.domain.Bus;
+import ua.pt.repository.BusRepository;
+import ua.pt.service.impl.BusServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class BusServiceTest {
+class BusServiceTest {
     @Mock(lenient = true)
     private BusRepository busRepository;
 

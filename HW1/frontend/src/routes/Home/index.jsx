@@ -27,13 +27,13 @@ function Home() {
             <select id="origin" className="mb-[3%] w-[220px] text-center h-12 rounded-md" onChange={(event) => setOrigin(event.target.value)}>
                 <option value="" disabled selected hidden>Select Origin</option>
                 {dataload && cities.slice(0,2).map((city, index) => (
-                    <option key={index} value={city.id}>{city.name}</option>
+                    <option key={city.id} value={city.id}>{city.name}</option>
                 ))}
             </select>
             <select id="destination" className="mb-[3%] border-1 w-[220px] text-center h-12 rounded-md" onChange={(event) => setDestination(event.target.value)}>
                 <option value="" disabled selected hidden>Select Destination</option>
                 {dataload && cities.slice(2,4).map((city, index) => (
-                    <option key={"destination" + index}value={city.id}>{city.name}</option>
+                    <option key={"destination" + city.id}value={city.id}>{city.name}</option>
                 ))}
             </select>
             <DatePicker

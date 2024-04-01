@@ -18,18 +18,18 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ua.pt.Domain.Bus;
-import ua.pt.Domain.City;
-import ua.pt.Domain.Reservation;
-import ua.pt.Domain.Trip;
-import ua.pt.Domain.User;
-import ua.pt.Repository.ReservationRepository;
-import ua.pt.Repository.TripRepository;
-import ua.pt.Repository.UserRepository;
-import ua.pt.Service.Impl.ReservationServiceImpl;
+import ua.pt.domain.Bus;
+import ua.pt.domain.City;
+import ua.pt.domain.Reservation;
+import ua.pt.domain.Trip;
+import ua.pt.domain.User;
+import ua.pt.repository.ReservationRepository;
+import ua.pt.repository.TripRepository;
+import ua.pt.repository.UserRepository;
+import ua.pt.service.impl.ReservationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class ReservationServiceTest {
+class ReservationServiceTest {
     @Mock(lenient = true)
     private ReservationRepository reservationRepository;
 
@@ -50,7 +50,7 @@ public class ReservationServiceTest {
         City city2 = new City("Lisboa");
         Trip trip = new Trip(city1, city2, new Date(), 2.5, new Bus());
         trip.setId(111L);
-        Reservation reservation1 = new Reservation("awaiting-payment", "EUR", trip, user);
+        Reservation reservation1 = new Reservation("awaiting-payment", "EUR", trip, user, 5.2);
         reservation1.setId((long)111);
 
         Reservation reservation2 = new Reservation();
