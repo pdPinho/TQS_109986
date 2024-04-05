@@ -35,10 +35,25 @@ class CurrencyServiceTest {
 
         double price = 2.0;
 
+        long start = System.nanoTime();
         double convertedPrice = currencyServiceImpl.convertPrice(2.0, "EUR");
-        logger.info("Converting " + price + " USD to - " + convertedPrice + " EUR");
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+        logger.info("Converting " + price + " USD to - " + convertedPrice + " EUR - it took: " + timeElapsed + " ms");
 
         assertThat(convertedPrice).isEqualTo(1.0);
+
+        start = System.nanoTime();
+        convertedPrice = currencyServiceImpl.convertPrice(2.0, "EUR");
+        finish = System.nanoTime();
+        timeElapsed = finish - start;
+        logger.info("Converting " + price + " USD to - " + convertedPrice + " EUR - it took: " + timeElapsed + " ms");
+
+        start = System.nanoTime();
+        convertedPrice = currencyServiceImpl.convertPrice(2.0, "USD");
+        finish = System.nanoTime();
+        timeElapsed = finish - start;
+        logger.info("Converting " + price + " USD to - " + convertedPrice + " USD - it took: " + timeElapsed + " ms");
 
         logger.info("Test completed successfully.");
         logger.info("===========================================");
