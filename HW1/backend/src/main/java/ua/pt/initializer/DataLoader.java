@@ -35,10 +35,16 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        loadUsers();
-        loadCities();
-        loadBuses();
-        loadTrips();
+        if(cityRepository.findAll().isEmpty() &&
+            userRepository.findAll().isEmpty() &&
+            busRepository.findAll().isEmpty() &&
+            tripRepository.findAll().isEmpty())
+        {
+            loadUsers();
+            loadCities();
+            loadBuses();
+            loadTrips();
+        }
     }
 
     private void loadUsers() {

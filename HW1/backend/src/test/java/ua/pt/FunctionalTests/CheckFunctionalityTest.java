@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
@@ -20,6 +21,11 @@ class CheckFunctionalityTest {
   @Test
   @DisplayName("Open website, select a trip, reserve it, pay it and check user reservations")
   void checkFunctionality(FirefoxDriver driver) {
+    // setting settings
+    FirefoxOptions options = new FirefoxOptions();
+    options.addArguments("--headless");
+    driver = new FirefoxDriver(options);
+
     // setting up workspace
     driver.get("http://localhost:3000/");
     driver.manage().window().setSize(new Dimension(599, 694));
