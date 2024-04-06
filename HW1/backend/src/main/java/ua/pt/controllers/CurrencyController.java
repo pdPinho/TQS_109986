@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import ua.pt.service.CurrencyService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -19,6 +21,9 @@ public class CurrencyController {
         this.currencyService = currencyService;
     }
 
+    @Operation(summary = "Convert price based on currency")
+    @ApiResponse(responseCode="200", description="Price retrieved")
+    @ApiResponse(responseCode="500", description="Currency does not exist")
     @GetMapping("/currency/{name}")
     public double convertCurrency(@PathVariable String name, @RequestParam("price") double price){
         return currencyService.convertPrice(price, name);

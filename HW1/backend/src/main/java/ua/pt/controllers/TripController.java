@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import ua.pt.domain.Trip;
 import ua.pt.service.TripService;
 
@@ -19,6 +21,8 @@ public class TripController {
         this.tripService = tripService;
     }
 
+    @Operation(summary = "Create a new trip")
+    @ApiResponse(responseCode="201", description="Trip created")
     @PostMapping("/trips")
     public ResponseEntity<Trip> createTrip(@RequestBody Trip trip){
         HttpStatus status = HttpStatus.CREATED;
@@ -26,11 +30,15 @@ public class TripController {
         return new ResponseEntity<>(saved, status);
     }
 
+    @Operation(summary = "Get all trips")
+    @ApiResponse(responseCode="200", description="Retrieved list of trips")
     @GetMapping("/trips")
     public List<Trip> getAllTrips(){
         return tripService.getAllTrips();
     }
 
+    @Operation(summary = "Get trip by ID")
+    @ApiResponse(responseCode="200", description="Retrieved trip by ID")
     @GetMapping("/trips/{id}")
     public ResponseEntity<Trip> getTripById(@PathVariable long id){
         Trip trip = tripService.getTripById(id);
@@ -42,7 +50,8 @@ public class TripController {
         return new ResponseEntity<>(trip, status);
     }
 
-    
+    @Operation(summary = "Get trips based on origin, destination, date and if or not full")
+    @ApiResponse(responseCode="200", description="Retrieved list of trips based on given parameters")
     @GetMapping("/trips/chosen")
     public List<Trip> findTripsByDateOriginDestination(
                                     @RequestParam("date") String date,
