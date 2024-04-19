@@ -1,0 +1,1 @@
+Due to my laptop suddenly stop working, I lost all my content related to lab7, so to address it I will be providing some very basic code examples instead of elaborate ones.
